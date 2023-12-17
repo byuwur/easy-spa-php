@@ -1,0 +1,106 @@
+/* BGV */
+.video-container {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	object-fit: cover;
+	z-index: -999;
+	filter: blur(4px);
+}
+.video-foreground {
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(96, 0, 0, 0.5) 100%);
+}
+/* Preloder */
+.loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: linear-gradient(180deg, rgba(96, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
+	z-index: 999;
+	-webkit-transition: ease all 0.33s;
+	-o-transition: ease all 0.33s;
+	-ms-transition: ease all 0.33s;
+	-moz-transition: ease all 0.33s;
+	transition: ease all 0.33s;
+}
+.load-text {
+	position: absolute;
+	background: #0000;
+	color: #fff;
+	bottom: 10%;
+	left: 0;
+	right: 0;
+	text-align: center;
+	margin: 0 auto;
+}
+.load-circle-back,
+.load-circle-fore {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+.load-circle-back:after,
+.load-circle-fore:after {
+	content: "";
+	display: block;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.load-circle-back {
+	height: 192px;
+	width: 192px;
+}
+.load-circle-fore {
+	height: 120px;
+	width: 120px;
+}
+.load-circle-back:after {
+	height: 192px;
+	width: 192px;
+	animation: rotate-reverse 2s infinite;
+	background-image: url("../img/icon-back.png");
+}
+.load-circle-fore:after {
+	height: 120px;
+	width: 120px;
+	animation: rotate 2s infinite;
+	background-image: url("../img/icon-fore.png");
+}
+@keyframes rotate {
+	0% {
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+	}
+	50% {
+		-webkit-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+	}
+	100% {
+		-webkit-transform: rotate(720deg);
+		-moz-transform: rotate(720deg);
+	}
+}
+@keyframes rotate-reverse {
+	0% {
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+	}
+	50% {
+		-webkit-transform: rotate(-360deg);
+		-moz-transform: rotate(-360deg);
+	}
+	100% {
+		-webkit-transform: rotate(-720deg);
+		-moz-transform: rotate(-720deg);
+	}
+}
