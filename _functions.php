@@ -1,5 +1,4 @@
 <?php
-// This file is always required by ./_config.php but can be required by its own
 // --- API functions ---
 function api_respond(int $status, bool $error, string $message, array $data = [])
 {
