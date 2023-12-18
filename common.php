@@ -5,7 +5,7 @@ if (isset($_GET['lang'])) {
         case 'es':
         case 'en':
             setcookie('lang', $_GET['lang'], time() + 31536000, '/', '', false, false);
-            require_once $TO_HOME . "lang/lang_" . $_GET['lang'] . ".php";
+            require_once $TO_HOME . "lang/" . $_GET['lang'] . ".php";
             echo "<html lang='" . $_GET['lang'] . "'>";
             $lang = $_GET['lang'];
             break;
@@ -14,14 +14,14 @@ if (isset($_GET['lang'])) {
     switch ($_COOKIE['lang']) {
         case 'es':
         case 'en':
-            require_once $TO_HOME . "lang/lang_" . $_COOKIE['lang'] . ".php";
+            require_once $TO_HOME . "lang/" . $_COOKIE['lang'] . ".php";
             echo "<html lang='" . $_COOKIE['lang'] . "'>";
             $lang = $_COOKIE['lang'];
             break;
     }
 } else {
     setcookie('lang', 'es', time() + 31536000, '/', '', false, false);
-    require_once $TO_HOME . "lang/lang_es.php";
+    require_once $TO_HOME . "lang/es.php";
     echo "<html lang='es'>";
     $lang = 'es';
 }
