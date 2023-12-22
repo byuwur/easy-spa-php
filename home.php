@@ -2,15 +2,15 @@
 <?php
 require_once "./_var.php";
 $routes = [
-    "/" => ["URI" => "main.php", "GET" => [], "POST" => []],
-    "/es" => ["URI" => "", "GET" => ["lang" => "es"], "POST" => []],
-    "/en" => ["URI" => "", "GET" => ["lang" => "en"], "POST" => []],
-    "/inicio" => ["URI" => "main.php", "GET" => ["lang" => "es"], "POST" => []],
-    "/home" => ["URI" => "main.php", "GET" => ["lang" => "en"], "POST" => []],
-    "/pagina1" => ["URI" => "page1.php", "GET" => ["lang" => "es"], "POST" => []],
-    "/page1" => ["URI" => "page1.php", "GET" => ["lang" => "en"], "POST" => []],
-    "/pagina2" => ["URI" => "page2.php", "GET" => ["lang" => "es"], "POST" => []],
-    "/page2" => ["URI" => "page2.php", "GET" => ["lang" => "en"], "POST" => []],
+    "/" => ["URI" => "main.php", "GET" => [], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
+    "/es" => ["URI" => "", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
+    "/en" => ["URI" => "", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
+    "/inicio" => ["URI" => "main.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
+    "/home" => ["URI" => "main.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
+    "/pagina1" => ["URI" => "page1.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
+    "/page1" => ["URI" => "page1.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
+    "/pagina2" => ["URI" => "page2.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
+    "/page2" => ["URI" => "page2.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
 ];
 require_once $TO_HOME . "_functions.php";
 require_once $TO_HOME . "_router.php";
@@ -40,9 +40,11 @@ require_once $TO_HOME . "common.php";
         <source src="<?= $HOME_PATH; ?>img/bg.mp4" type="video/mp4" />
         <source src="<?= $HOME_PATH; ?>img/bg.webm" type="video/webm" />
     </video>
-    <header id="header" class="header"></header>
-    <div id="spa-page-content-container" class="video-foreground"></div>
-    <footer id="footer" class="footer"></footer>
+    <div id="body">
+        <header id="header"></header>
+        <div id="spa-page-content-container"></div>
+        <footer id="footer"></footer>
+    </div>
 </body>
 
 </html>
