@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
             url: `${HOME_PATH}${uri}?${new URLSearchParams(get).toString()}`,
             data: { ...post },
             success: function (data) {
-                for (let key in component) if (component[key] != COMPONENTS[key]) reloadComponent(component[key], key);
+                for (let key in component) if (component[key] != COMPONENTS[key] || uri != ROUTES[path].URI) reloadComponent(component[key], key);
                 $("#spa-page-content-container").html(data);
             }, error: function (xhr, status, error) {
                 console.log("Error loading content:", error);
