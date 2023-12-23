@@ -26,8 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             data: { custom_error_message },
             success: function (data) {
                 document.write(data);
-                $("head").append(`<script src='${HOME_PATH}_spa.js' defer></script>
-                <script>
+                $("head").append(`<script>
                 const parseURL = ${parseURL}, routeURL = ${routeURL}, loadSPA = ${loadSPA}, getLocalStorageItems = ${getLocalStorageItems}, ROUTES = ${JSON.stringify(ROUTES)}, HOME_PATH = "${HOME_PATH}";
                 let HISTORY_PATH = ${JSON.stringify(HISTORY_PATH)}; HISTORY_INDEX = ${HISTORY_INDEX}, _GET = ${JSON.stringify(_GET)}, _POST = ${JSON.stringify(_POST)}, COMPONENTS = ${JSON.stringify(COMPONENTS)};
                 window.addEventListener("popstate", function (e) {
