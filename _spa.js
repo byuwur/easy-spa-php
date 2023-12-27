@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     const errorPage = function (status, custom_error_message = "") {
         $.ajax({
-            type: "POST",
             url: `${HOME_PATH}_error.php?e=${status}`,
+            type: "POST",
             data: { custom_error_message },
             success: function (data) {
                 document.write(data);
@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const reloadComponent = function (file, component) {
         COMPONENTS[component] = file;
         $.ajax({
-            async: false,
             url: `${HOME_PATH}${file}`,
             success: function (data) {
                 $(component).html(data);
@@ -84,12 +83,12 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("routeURL(); PATH=", path, "; URI=", uri, "; FILE=", file, "; _GET=", get, "; _POST=", post, "; COMPONENT=", component); */
         if (push) historyPushState(url);
         if (!$("#spa-page-content-container").length) location.reload();
+        for (let key in component) if (component[key] != COMPONENTS[key] || uri != ROUTES[path].URI) reloadComponent(component[key], key);
         if (!file) $.ajax({
-            type: "POST",
             url: `${HOME_PATH}${uri}?${new URLSearchParams(get).toString()}`,
+            type: "POST",
             data: { ...post },
             success: function (data) {
-                for (let key in component) if (component[key] != COMPONENTS[key] || uri != ROUTES[path].URI) reloadComponent(component[key], key);
                 $("#spa-page-content-container").html(data);
             }, error: function (xhr, status, error) {
                 console.log("Error loading content:", error);
@@ -101,10 +100,11 @@ document.addEventListener('DOMContentLoaded', function () {
         else window.location = path;
     };
     window.addEventListener("popstate", function (e) {
+        if (!e.state || !e.state.index) return;
         HISTORY_INDEX = e.state.index;
         loadSPA(HISTORY_PATH[HISTORY_INDEX], false);
     });
-    $(document).on("click", "a:not([target='_blank'])", function (e) {
+    $(document).on("click", "a:not([target='_blank']):not([href^='#']):not([href^='javascript:'])", function (e) {
         e.preventDefault();
         loadSPA($(this).attr("href"));
     });

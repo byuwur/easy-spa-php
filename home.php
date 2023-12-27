@@ -40,11 +40,9 @@ require_once $TO_HOME . "common.php";
         <source src="<?= $HOME_PATH; ?>img/bg.mp4" type="video/mp4" />
         <source src="<?= $HOME_PATH; ?>img/bg.webm" type="video/webm" />
     </video>
-    <div id="body">
-        <header id="header"></header>
-        <div id="spa-page-content-container"></div>
-        <footer id="footer"></footer>
-    </div>
+    <header id="header"></header>
+    <div id="spa-page-content-container"></div>
+    <footer id="footer"></footer>
 </body>
 
 </html>
