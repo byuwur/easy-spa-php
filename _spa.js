@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         HISTORY_INDEX = e.state.index;
         loadSPA(HISTORY_PATH[HISTORY_INDEX], false);
     });
-    $(document).on("click", "a:not([target='_blank']):not([href^='#']):not([href^='javascript:'])", function (e) {
+    $(document).on("click", "a:not([target='_blank']):not([href^='#']):not([href^='javascript:']):not([custom-folder='true'])", function (e) {
         e.preventDefault();
         loadSPA($(this).attr("href"));
     });
