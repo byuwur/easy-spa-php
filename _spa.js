@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return { path, uri, file: ROUTES[path]?.FILE, get: _GET, post: _POST, component: ROUTES[path]?.COMPONENT };
     };
     const loadSPA = function (url, push = true) {
-        $(".load-circle-back, .load-circle-fore, .load-text, .loading").fadeIn(1);
+        $("#spa-loader").fadeIn(1);
         $("#spa-page-content-container").html("");
         const { path, uri, file, get, post, component } = routeURL(`${url}`);
         /* console.log(`loadSPA("${url}");`);
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log("Error loading content:", error);
                 errorPage(404, `Route "${url}" does not exist.`);
             }, complete: function () {
-                $(".load-circle-back, .load-circle-fore, .load-text, .loading").fadeOut(500);
+                $("#spa-loader").fadeOut(500);
             }
         });
         else window.location = path;
