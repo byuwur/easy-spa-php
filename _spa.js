@@ -27,8 +27,8 @@ $(document).ready(function () {
             success: function (data) {
                 document.write(data);
                 $("head").append(`<script>
-                const parseURL = ${parseURL}, routeURL = ${routeURL}, loadSPA = ${loadSPA}, getLocalStorageItems = ${getLocalStorageItems}, ROUTES = ${JSON.stringify(ROUTES)}, HOME_PATH = "${HOME_PATH}";
-                let HISTORY_PATH = ${JSON.stringify(HISTORY_PATH)}; HISTORY_INDEX = ${HISTORY_INDEX}, _GET = ${JSON.stringify(_GET)}, _POST = ${JSON.stringify(_POST)}, COMPONENTS = ${JSON.stringify(COMPONENTS)};
+                const parseURL = ${parseURL}, routeURL = ${routeURL}, loadSPA = ${loadSPA}, getLocalStorageItems = ${getLocalStorageItems}, ROUTES = ${JSON.stringify(ROUTES)}, TO_HOME = "${TO_HOME}", HOME_PATH = "${HOME_PATH}", HISTORY_PATH = ${JSON.stringify(HISTORY_PATH)}, COMPONENTS = ${JSON.stringify(COMPONENTS)};
+                let _GET = ${JSON.stringify(_GET)}, _POST = ${JSON.stringify(_POST)}, HISTORY_INDEX = ${HISTORY_INDEX};
                 window.addEventListener("popstate", function (e) {
                     HISTORY_INDEX = e.state.index;
                     loadSPA(HISTORY_PATH[HISTORY_INDEX], false);
@@ -39,10 +39,12 @@ $(document).ready(function () {
             }
         });
     };
-    const reloadComponent = function (file, component) {
+    const reloadComponent = function (component, file, get, post) {
         COMPONENTS[component] = file;
         $.ajax({
-            url: `${HOME_PATH}${file}`,
+            url: `${HOME_PATH}${file}?${new URLSearchParams(get).toString()}`,
+            type: "POST",
+            data: { ...post },
             success: function (data) {
                 $(component).html(data);
             }, error: function (xhr, status, error) {
@@ -78,11 +80,9 @@ $(document).ready(function () {
         $("#spa-loader").fadeIn(1);
         $("#spa-page-content-container").html("");
         const { path, uri, file, get, post, component } = routeURL(`${url}`);
-        /* console.log(`loadSPA("${url}");`);
-        console.log("routeURL(); PATH=", path, "; URI=", uri, "; FILE=", file, "; _GET=", get, "; _POST=", post, "; COMPONENT=", component); */
         if (push) historyPushState(url);
         if (!$("#spa-page-content-container").length) location.reload();
-        for (let key in component) if (component[key] != COMPONENTS[key] || uri != ROUTES[path].URI) reloadComponent(component[key], key);
+        for (let key in component) reloadComponent(key, component[key], get, post);
         if (!file) $.ajax({
             url: `${HOME_PATH}${uri}?${new URLSearchParams(get).toString()}`,
             type: "POST",
