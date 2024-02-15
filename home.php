@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <?php
 $routes = [
-    "/" => ["URI" => "main.php", "GET" => [], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
-    "/es" => ["URI" => "", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
-    "/en" => ["URI" => "", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
-    "/inicio" => ["URI" => "main.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
-    "/home" => ["URI" => "main.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
-    "/pagina1" => ["URI" => "page1.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
-    "/page1" => ["URI" => "page1.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
-    "/pagina2" => ["URI" => "page2.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
-    "/page2" => ["URI" => "page2.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    //"/uri" => ["URI" => "file.php", "GET" => ["key" => "value"], "POST" => ["key" => "value"], "COMPONENT" => ["#id" => "file.php"]],
+    "/" => ["URI" => "main.php", "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/es" => ["URI" => "", "GET" => ["lang" => "es"], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/en" => ["URI" => "", "GET" => ["lang" => "en"], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/inicio" => ["URI" => "main.php", "GET" => ["lang" => "es"], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/home" => ["URI" => "main.php", "GET" => ["lang" => "en"], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/pagina1" => ["URI" => "page1.php", "GET" => ["lang" => "es"], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/page1" => ["URI" => "page1.php", "GET" => ["lang" => "en"], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/pagina2" => ["URI" => "page2.php", "GET" => ["lang" => "es"], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/page2" => ["URI" => "page2.php", "GET" => ["lang" => "en"], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
 ];
 $setLocalStorage = true;
 require_once "./_var.php";

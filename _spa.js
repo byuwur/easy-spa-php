@@ -3,12 +3,12 @@ $(document).ready(function () {
     let URI = localStorage.getItem("URI"),
         _GET = JSON.parse(localStorage.getItem("_GET")),
         _POST = JSON.parse(localStorage.getItem("_POST")),
-        HISTORY_INDEX = -1,
-        HISTORY_PATH = [],
-        COMPONENTS = {};
+        HISTORY_INDEX = -1;
     const ROUTES = JSON.parse(localStorage.getItem("ROUTES")),
         TO_HOME = localStorage.getItem("TO_HOME"),
-        HOME_PATH = localStorage.getItem("HOME_PATH");
+        HOME_PATH = localStorage.getItem("HOME_PATH"),
+        HISTORY_PATH = [],
+        COMPONENTS = {};
     const getLocalStorageItems = function () {
         URI = localStorage.getItem("URI");
         _GET = JSON.parse(localStorage.getItem("_GET"));
@@ -64,8 +64,7 @@ $(document).ready(function () {
     };
     const routeURL = function (uri = "/") {
         const { path, params } = parseURL(uri);
-        if (!ROUTES.hasOwnProperty(path) || !Object.entries(ROUTES).length || (!ROUTES[path]?.GET && !ROUTES[path]?.POST))
-            errorPage(404, `Route "${uri}" does not exist.`);
+        if (!ROUTES.hasOwnProperty(path) || !Object.entries(ROUTES).length) errorPage(404, `Route "${uri}" does not exist.`);
         localStorage.setItem("URI", path);
         localStorage.setItem("_GET", JSON.stringify({ ..._GET, ...ROUTES[path]?.GET ?? [], ...params }));
         localStorage.setItem("_POST", JSON.stringify({ ..._POST, ...ROUTES[path]?.POST ?? [] }));

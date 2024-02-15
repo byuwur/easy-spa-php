@@ -1,5 +1,5 @@
 <?php
-require_once "./_var.php";
+// You MUST require_once './_var.php' to get paths, plus require_once $TO_HOME . "_functions.php";
 if (isset($_GET['lang'])) {
     switch ($_GET['lang']) {
         case 'es':
