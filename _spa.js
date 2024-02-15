@@ -1,5 +1,5 @@
 "use strict";
-document.addEventListener('DOMContentLoaded', function () {
+$(document).ready(function () {
     let URI = localStorage.getItem("URI"),
         _GET = JSON.parse(localStorage.getItem("_GET")),
         _POST = JSON.parse(localStorage.getItem("_POST")),
@@ -108,7 +108,5 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         loadSPA($(this).attr("href"));
     });
-    $(document).ready(function () {
-        loadSPA(`${TO_HOME == "./" ? "." : TO_HOME}${URI}`);
-    });
+    loadSPA(`${TO_HOME == "./" ? "." : TO_HOME}${URI}`);
 });
