@@ -3,15 +3,15 @@
 $setLocalStorage = true;
 require_once "./_var.php";
 $routes = [
-    "/" => ["URI" => "main.php", "GET" => [], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
-    "/es" => ["URI" => "", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
-    "/en" => ["URI" => "", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
-    "/inicio" => ["URI" => "main.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
-    "/home" => ["URI" => "main.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
-    "/pagina1" => ["URI" => "page1.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
-    "/page1" => ["URI" => "page1.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
-    "/pagina2" => ["URI" => "page2.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
-    "/page2" => ["URI" => "page2.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php", "head" => "head.php"]],
+    "/" => ["URI" => "main.php", "GET" => [], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/es" => ["URI" => "", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/en" => ["URI" => "", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/inicio" => ["URI" => "main.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/home" => ["URI" => "main.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/pagina1" => ["URI" => "page1.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/page1" => ["URI" => "page1.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/pagina2" => ["URI" => "page2.php", "GET" => ["lang" => "es"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
+    "/page2" => ["URI" => "page2.php", "GET" => ["lang" => "en"], "POST" => [], "COMPONENT" => ["#header" => "header.php", "#footer" => "footer.php"]],
 ];
 require_once $TO_HOME . "_functions.php";
 require_once $TO_HOME . "_router.php";
