@@ -99,7 +99,7 @@ $(document).ready(function () {
         else window.location = path;
     };
     window.addEventListener("popstate", function (e) {
-        if (!e.state || !e.state.index) return;
+        if (!e.state || e.state.index == undefined) return;
         HISTORY_INDEX = e.state.index;
         loadSPA(HISTORY_PATH[HISTORY_INDEX], false);
     });
