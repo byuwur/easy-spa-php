@@ -80,8 +80,8 @@ $(document).ready(function () {
         $("#spa-loader").fadeIn(1);
         $("#spa-page-content-container").html("");
         const { path, uri, file, get, post, component } = routeURL(`${url}`);
-        console.log(`loadSPA("${url}");`);
-        console.log("routeURL(); PATH=", path, "; URI=", uri, "; FILE=", file, "; _GET=", get, "; _POST=", post, "; COMPONENT=", component);
+        /* console.log(`loadSPA("${url}");`);
+        console.log("routeURL(); PATH=", path, "; URI=", uri, "; FILE=", file, "; _GET=", get, "; _POST=", post, "; COMPONENT=", component); */
         if (push) historyPushState(url);
         if (!$("#spa-page-content-container").length) location.reload();
         for (let key in component) reloadComponent(key, component[key], get, post);
@@ -110,7 +110,7 @@ $(document).ready(function () {
         loadSPA($(this).attr("href"));
     });
     loadSPA(`${TO_HOME == "./" ? "." : TO_HOME}${URI}`);
-    console.log("URI=", URI);
+    /* console.log("URI=", URI);
     console.log("_GET=", _GET);
     console.log("_POST=", _POST);
     console.log("HISTORY_INDEX=", HISTORY_INDEX);
@@ -118,5 +118,5 @@ $(document).ready(function () {
     console.log("TO_HOME=", TO_HOME);
     console.log("HOME_PATH=", HOME_PATH);
     console.log("HISTORY_PATH=", HISTORY_PATH);
-    console.log("COMPONENTS=", COMPONENTS);
+    console.log("COMPONENTS=", COMPONENTS); */
 });
