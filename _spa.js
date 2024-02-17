@@ -7,8 +7,7 @@ $(document).ready(function () {
     const ROUTES = JSON.parse(localStorage.getItem("ROUTES")),
         TO_HOME = localStorage.getItem("TO_HOME"),
         HOME_PATH = localStorage.getItem("HOME_PATH"),
-        HISTORY_PATH = [],
-        COMPONENTS = {};
+        HISTORY_PATH = [];
     const getLocalStorageItems = function () {
         URI = localStorage.getItem("URI");
         _GET = JSON.parse(localStorage.getItem("_GET"));
@@ -17,17 +16,17 @@ $(document).ready(function () {
     const historyPushState = function (url) {
         HISTORY_INDEX++;
         HISTORY_PATH[HISTORY_INDEX] = url;
-        history.pushState({ index: HISTORY_INDEX }, "", url);
+        history.pushState({ index: HISTORY_INDEX }, "", `${HOME_PATH}${url}`);
     };
     const errorPage = function (status, custom_error_message = "") {
         $.ajax({
-            url: `${HOME_PATH}_error.php?e=${status}`,
+            url: `${HOME_PATH}/_error.php?e=${status}`,
             type: "POST",
             data: { custom_error_message },
             success: function (data) {
                 document.write(data);
                 $("head").append(`<script>
-                const parseURL = ${parseURL}, routeURL = ${routeURL}, loadSPA = ${loadSPA}, getLocalStorageItems = ${getLocalStorageItems}, ROUTES = ${JSON.stringify(ROUTES)}, TO_HOME = "${TO_HOME}", HOME_PATH = "${HOME_PATH}", HISTORY_PATH = ${JSON.stringify(HISTORY_PATH)}, COMPONENTS = ${JSON.stringify(COMPONENTS)};
+                const parseURL = ${parseURL}, routeURL = ${routeURL}, loadSPA = ${loadSPA}, getLocalStorageItems = ${getLocalStorageItems}, ROUTES = ${JSON.stringify(ROUTES)}, TO_HOME = "${TO_HOME}", HOME_PATH = "${HOME_PATH}", HISTORY_PATH = ${JSON.stringify(HISTORY_PATH)};
                 let _GET = ${JSON.stringify(_GET)}, _POST = ${JSON.stringify(_POST)}, HISTORY_INDEX = ${HISTORY_INDEX};
                 window.addEventListener("popstate", function (e) {
                     HISTORY_INDEX = e.state.index;
@@ -36,11 +35,12 @@ $(document).ready(function () {
                 </script>`);
             }, error: function (xhr, status, error) {
                 console.log("Error loading content:", error);
+            }, complete: function () {
+                return null;
             }
         });
     };
     const reloadComponent = function (component, file, get, post) {
-        COMPONENTS[component] = file;
         $.ajax({
             url: `${HOME_PATH}${file}?${new URLSearchParams(get).toString()}`,
             type: "POST",
@@ -66,7 +66,7 @@ $(document).ready(function () {
     };
     const routeURL = function (uri = "/") {
         const { path, params } = parseURL(uri);
-        if (!ROUTES.hasOwnProperty(path) || !Object.entries(ROUTES).length) errorPage(404, `Route "${uri}" does not exist.`);
+        if (!Object.keys(ROUTES).includes(path) || !Object.keys(ROUTES).length) return errorPage(404, `Route "${uri}" does not exist.`);
         localStorage.setItem("URI", path);
         localStorage.setItem("_GET", JSON.stringify({ ..._GET, ...ROUTES[path]?.GET ?? [], ...params }));
         localStorage.setItem("_POST", JSON.stringify({ ..._POST, ...ROUTES[path]?.POST ?? [] }));
@@ -79,7 +79,9 @@ $(document).ready(function () {
     const loadSPA = function (url, push = true) {
         $("#spa-loader").fadeIn(1);
         $("#spa-page-content-container").html("");
-        const { path, uri, file, get, post, component } = routeURL(`${url}`);
+        const routing = routeURL(`${url}`);
+        if (!routing) return;
+        const { path, uri, file, get, post, component } = routing;
         /* console.log(`loadSPA("${url}");`);
         console.log("routeURL(); PATH=", path, "; URI=", uri, "; FILE=", file, "; _GET=", get, "; _POST=", post, "; COMPONENT=", component); */
         if (push) historyPushState(url);
@@ -98,7 +100,7 @@ $(document).ready(function () {
                 $("#spa-loader").fadeOut(500);
             }
         });
-        else window.location = path;
+        else window.location = `${HOME_PATH}${path}`;
     };
     window.addEventListener("popstate", function (e) {
         if (!e.state || e.state.index == undefined) return;
@@ -109,7 +111,7 @@ $(document).ready(function () {
         e.preventDefault();
         loadSPA($(this).attr("href"));
     });
-    loadSPA(`${TO_HOME == "./" ? "." : TO_HOME}${URI}`);
+    loadSPA(`${URI}`);
     /* console.log("URI=", URI);
     console.log("_GET=", _GET);
     console.log("_POST=", _POST);
@@ -117,6 +119,5 @@ $(document).ready(function () {
     console.log("ROUTES=", ROUTES);
     console.log("TO_HOME=", TO_HOME);
     console.log("HOME_PATH=", HOME_PATH);
-    console.log("HISTORY_PATH=", HISTORY_PATH);
-    console.log("COMPONENTS=", COMPONENTS); */
+    console.log("HISTORY_PATH=", HISTORY_PATH); */
 });
