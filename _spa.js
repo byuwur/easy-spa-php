@@ -1,6 +1,7 @@
 "use strict";
 $(document).ready(function () {
     let URI = localStorage.getItem("URI"),
+        URL = localStorage.getItem("URL"),
         _GET = JSON.parse(localStorage.getItem("_GET")),
         _POST = JSON.parse(localStorage.getItem("_POST")),
         HISTORY_INDEX = -1;
@@ -10,6 +11,7 @@ $(document).ready(function () {
         HISTORY_PATH = [];
     const getLocalStorageItems = function () {
         URI = localStorage.getItem("URI");
+        URL = localStorage.getItem("URL");
         _GET = JSON.parse(localStorage.getItem("_GET"));
         _POST = JSON.parse(localStorage.getItem("_POST"));
     };
@@ -111,8 +113,9 @@ $(document).ready(function () {
         e.preventDefault();
         loadSPA($(this).attr("href"));
     });
-    loadSPA(`${URI}`);
+    loadSPA(`${URL}`);
     /* console.log("URI=", URI);
+    console.log("URL=", URL);
     console.log("_GET=", _GET);
     console.log("_POST=", _POST);
     console.log("HISTORY_INDEX=", HISTORY_INDEX);
