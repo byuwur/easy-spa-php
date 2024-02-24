@@ -23,6 +23,39 @@ function make_http_request(string $url, array $get = [], array $post = [])
     curl_close($req);
     return $requested;
 }
+function validate_value($input, string $type = "")
+{
+    if (!isset($input)) return false;
+    if ($input == null) return false;
+    if ($input == "null") return false;
+    if ($input == "") return false;
+    $filterMap = [
+        "boolean" => FILTER_VALIDATE_BOOLEAN,
+        "domain" => FILTER_VALIDATE_DOMAIN,
+        "email" => FILTER_VALIDATE_EMAIL,
+        "float" => FILTER_VALIDATE_FLOAT,
+        "int" => FILTER_VALIDATE_INT,
+        "ip" => FILTER_VALIDATE_IP,
+        "mac" => FILTER_VALIDATE_MAC,
+        "url" => FILTER_VALIDATE_URL
+    ];
+    return filter_var($input, $filterMap[$type] ?? FILTER_UNSAFE_RAW);
+}
+function sanitize_value($input, string $type = "")
+{
+    $input = trim($input);
+    $input = strip_tags($input);
+    $input = htmlspecialchars($input);
+    $filterMap = [
+        "email" => FILTER_SANITIZE_EMAIL,
+        "encoded" => FILTER_SANITIZE_ENCODED,
+        "float" => FILTER_SANITIZE_NUMBER_FLOAT,
+        "int" => FILTER_SANITIZE_NUMBER_INT,
+        "special_chars" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "url" => FILTER_SANITIZE_URL
+    ];
+    return filter_var($input, $filterMap[$type] ?? FILTER_UNSAFE_RAW);
+}
 // --- functions ---
 function suppress_errors()
 {
