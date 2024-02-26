@@ -43,6 +43,10 @@ $(document).ready(function () {
         });
     };
     const reloadComponent = function (component, file, get, post) {
+        if (!file || file == "" || file == "null") {
+            $(component).html("");
+            return;
+        }
         $.ajax({
             url: `${HOME_PATH}${file}?${new URLSearchParams(get).toString()}`,
             type: "POST",
@@ -87,9 +91,13 @@ $(document).ready(function () {
         const { path, uri, file, get, post, component } = routing;
         /* console.log(`loadSPA("${url}");`);
         console.log("routeURL(); PATH=", path, "; URI=", uri, "; FILE=", file, "; _GET=", get, "; _POST=", post, "; COMPONENT=", component); */
-        if (!$("#spa-page-content-container").length) location.reload();
+        if (file) {
+            window.location = `${HOME_PATH}${path}`;
+            return;
+        }
+        if (!$("#spa-page-content-container").length) window.location.reload();
         for (let key in component) reloadComponent(key, component[key], get, post);
-        if (!file) $.ajax({
+        $.ajax({
             url: `${HOME_PATH}${uri}?${new URLSearchParams(get).toString()}`,
             type: "POST",
             data: { ...post },
@@ -102,7 +110,6 @@ $(document).ready(function () {
                 $("#spa-loader").fadeOut(500);
             }
         });
-        else window.location = `${HOME_PATH}${path}`;
     };
     window.addEventListener("popstate", function (e) {
         if (!e.state || e.state.index == undefined) return;
