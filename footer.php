@@ -1,5 +1,6 @@
 <?php
 require_once "./_var.php";
+require_once $TO_HOME . "_routes.php";
 require_once $TO_HOME . "common.php";
 ?>
 <nav class="navbar fixed-bottom navbar-expand navbar-dark bg-dark text-white m-0 d-flex justify-content-end">

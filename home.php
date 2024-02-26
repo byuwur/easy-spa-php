@@ -3,19 +3,7 @@
 $setLocalStorage = true;
 require_once "./_var.php";
 require_once $TO_HOME . "_functions.php";
-$routes = [
-    // "/uri" => ["URI" => "/file.php", "GET" => [..."key" => "value"...], "POST" => [..."key" => "value"...], "COMPONENT" => [..."#id" => "file.php"...]],
-    // "/" routes
-    "${ROOT_ROUTE}" => ["URI" => "/main.php", "COMPONENT" => ["#header" => "/header.php", "#footer" => "/footer.php"]],
-    "${ROOT_ROUTE}es" => ["URI" => "", "GET" => ["lang" => "es"], "COMPONENT" => ["#header" => "/header.php", "#footer" => "/footer.php"]],
-    "${ROOT_ROUTE}en" => ["URI" => "", "GET" => ["lang" => "en"], "COMPONENT" => ["#header" => "/header.php", "#footer" => "/footer.php"]],
-    "${ROOT_ROUTE}inicio" => ["URI" => "/main.php", "GET" => ["lang" => "es"], "COMPONENT" => ["#header" => "/header.php", "#footer" => "/footer.php"]],
-    "${ROOT_ROUTE}home" => ["URI" => "/main.php", "GET" => ["lang" => "en"], "COMPONENT" => ["#header" => "/header.php", "#footer" => "/footer.php"]],
-    "${ROOT_ROUTE}pagina1" => ["URI" => "/page1.php", "GET" => ["lang" => "es"], "COMPONENT" => ["#header" => "/header.php", "#footer" => "/footer.php"]],
-    "${ROOT_ROUTE}page1" => ["URI" => "/page1.php", "GET" => ["lang" => "en"], "COMPONENT" => ["#header" => "/header.php", "#footer" => "/footer.php"]],
-    "${ROOT_ROUTE}pagina2" => ["URI" => "/page2.php", "GET" => ["lang" => "es"], "COMPONENT" => ["#header" => "/header.php", "#footer" => "/footer.php"]],
-    "${ROOT_ROUTE}page2" => ["URI" => "/page2.php", "GET" => ["lang" => "en"], "COMPONENT" => ["#header" => "/header.php", "#footer" => "/footer.php"]],
-];
+require_once $TO_HOME . "_routes.php";
 require_once $TO_HOME . "_router.php";
 require_once $TO_HOME . "common.php";
 ?>

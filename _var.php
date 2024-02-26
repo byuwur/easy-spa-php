@@ -17,5 +17,3 @@ if (isset($setLocalStorage) && $setLocalStorage) { ?>
         localStorage.setItem("HOME_PATH", "<?= $HOME_PATH; ?>");
     </script>
 <?php }
-// --- routes ---
-$ROOT_ROUTE = "/";
