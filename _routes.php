@@ -1,6 +1,4 @@
 <?php
-require_once "./_var.php";
-require_once $TO_HOME . "_functions.php";
 // routes
 $ROOT_ROUTE = "/";
 // components
