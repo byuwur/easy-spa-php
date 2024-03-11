@@ -36,7 +36,7 @@ $(document).ready(function () {
                 });
                 </script>`);
             }, error: function (xhr, status, error) {
-                console.log("Error loading content:", error);
+                console.log("Error loading content:", xhr, status, error);
             }, complete: function () {
                 return null;
             }
@@ -54,7 +54,7 @@ $(document).ready(function () {
             success: function (data) {
                 $(component).html(data);
             }, error: function (xhr, status, error) {
-                console.log("Error loading content:", error);
+                console.log("Error loading content:", xhr, status, error);
             }
         });
     };
@@ -104,7 +104,7 @@ $(document).ready(function () {
             success: function (data) {
                 $("#spa-page-content-container").html(data);
             }, error: function (xhr, status, error) {
-                console.log("Error loading content:", error);
+                console.log("Error loading content:", xhr, status, error);
                 errorPage(404, `Route "${url}" does not exist.`);
             }, complete: function () {
                 $("#spa-loader").fadeOut(500);
