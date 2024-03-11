@@ -13,6 +13,8 @@ function api_respond(int $status, bool $error, string $message, array $data = []
 }
 function make_http_request(string $url, array $get = [], array $post = [])
 {
+    session_write_close();
+    $post[session_name()] = session_id();
     $req = curl_init();
     curl_setopt($req, CURLOPT_URL, $url . "?" . http_build_query($get));
     curl_setopt($req, CURLOPT_POST, 1);
@@ -21,6 +23,7 @@ function make_http_request(string $url, array $get = [], array $post = [])
     $requested = curl_exec($req);
     if (curl_errno($req)) echo "<script>console.error(\"CURL ERROR: " . curl_error($req) . "\");</script>";
     curl_close($req);
+    session_start();
     return $requested;
 }
 function validate_value($input, string $type = "")
