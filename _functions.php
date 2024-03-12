@@ -60,6 +60,13 @@ function sanitize_value($input, string $type = "")
     return filter_var($input, $filterMap[$type] ?? FILTER_UNSAFE_RAW);
 }
 // --- functions ---
+function error_crash(int $status, string $message, string $error_file)
+{
+    $_GET["e"] = $status;
+    $_POST["custom_error_message"] = $message;
+    require_once $error_file;
+    exit;
+}
 function suppress_errors()
 {
     error_reporting(0);
@@ -114,7 +121,8 @@ function show_modal_back($state = "success", $title = "INFO.", $message = "Messa
     });
     </script>';
 }
-function get_mime_type($filename) {
+function get_mime_type($filename)
+{
     $mime = [
         'aac' => 'audio/aac',
         'abw' => 'application/x-abiword',
@@ -184,7 +192,7 @@ function get_mime_type($filename) {
         '3gp' => 'video/3gpp',
         '3g2' => 'video/3gpp2',
         '7z' => 'application/x-7z-compressed'
-    ];    
+    ];
     $type = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
     return $mime[$type] ?? "application/octet-stream";
 }
