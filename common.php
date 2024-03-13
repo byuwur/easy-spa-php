@@ -50,10 +50,6 @@ $titles = [
     "SPA " . $page1 . " | byUwUr",
     "SPA " . $page2 . " | byUwUr"
 ];
-?>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script src="https://www.googletagmanager.com/gtag/js?id=UA-148227598-1" async defer></script>
-<?php
 // --- declarations ---
 $MATEUS_LINK = "https://byuwur.net";
 $DNI_TYPES = [
@@ -68,3 +64,6 @@ $DNI_TYPES = [
 $BLOOD_TYPES = ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"];
 $DAYS_OF_WEEK = ["--- Seleccionar día de la semana ---", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 $MONTHS = ["--- Mes ---", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+?>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-148227598-1" async defer></script>
