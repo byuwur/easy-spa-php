@@ -1,6 +1,6 @@
 <?php
+ob_start();
 // require_once "./_var.php" must be the first line of every file
-// require_once $TO_HOME . "_config.php" should be the very next line if needed
 $SYSTEM_ROOT = dirname(str_replace("\\", "/", __FILE__));
 $PROTOCOL = isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on" ? "https://" : "http://";
 $PATH_DIFF = count(explode("/", str_replace("\\", "/", $_SERVER["SCRIPT_FILENAME"]))) - count(explode("/", str_replace("\\", "/", __FILE__)));

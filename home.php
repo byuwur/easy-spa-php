@@ -3,9 +3,12 @@
 $setLocalStorage = true;
 require_once "./_var.php";
 require_once $TO_HOME . "_functions.php";
+//require_once $TO_HOME . "_config.php";
 require_once $TO_HOME . "_routes.php";
 require_once $TO_HOME . "_router.php";
+//require_once $TO_HOME . "_auth.php";
 require_once $TO_HOME . "common.php";
+// --- PHP ---
 ?>
 
 <head>
@@ -37,3 +40,8 @@ require_once $TO_HOME . "common.php";
 </body>
 
 </html>
+<?php
+//login([], true);
+// Always output due to "/_var.php" invoking ob_start();
+ob_end_flush();
+?>

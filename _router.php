@@ -1,5 +1,5 @@
 <?php
-// MUST require_once $TO_HOME . "_functions.php"; and $routes MUST be previously defined
+// MUST require_once $TO_HOME . "_functions.php"; and $routes/_routes.php MUST be previously defined/required
 $uri = $_GET["uri"] ?? "/";
 while (strlen($uri) > 0 && substr($uri, 0, 1) != "/") $uri = substr($uri, 1);
 while (strlen($uri) > 1 && substr($uri, -1) == "/") $uri = substr($uri, 0, -1);

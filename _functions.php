@@ -9,6 +9,7 @@ function api_respond(int $status, bool $error, string $message, array $data = []
     $response->message = $message;
     $response->data = $data;
     echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    ob_end_flush();
     exit;
 }
 function make_http_request(string $url, array $get = [], array $post = [])
@@ -65,6 +66,7 @@ function error_crash(int $status, string $message, string $error_file)
     $_GET["e"] = $status;
     $_POST["custom_error_message"] = $message;
     require_once $error_file;
+    ob_end_flush();
     exit;
 }
 function suppress_errors()
@@ -81,6 +83,7 @@ function exit_json($json)
 {
     header("Content-Type: application/json");
     echo json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    ob_end_flush();
     exit;
 }
 function print_json($json)
