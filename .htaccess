@@ -34,6 +34,5 @@ RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
 RewriteRule .* - [F]
 #Forbid
 <FilesMatch "^(.*\.)?(git|gitignore|rb|inc|ht|env|md|json|lock|htaccess|ini|log|pem|sql|txt)$">
-    Order deny,allow
-    Deny from all
+    Require all denied
 </FilesMatch>
