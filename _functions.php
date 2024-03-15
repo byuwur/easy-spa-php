@@ -61,6 +61,10 @@ function sanitize_value($input, string $type = "")
     return filter_var($input, $filterMap[$type] ?? FILTER_UNSAFE_RAW);
 }
 // --- functions ---
+function console_log(string $message)
+{
+    echo "<script>console.log('" . $message . "');</script>";
+}
 function error_crash(int $status, string $message, string $error_file)
 {
     $_GET["e"] = $status;
